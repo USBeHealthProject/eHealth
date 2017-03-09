@@ -23,7 +23,7 @@
         {% for pregunta in preguntas %}
         <tr>
           <td>{{ pregunta.pregunta }}</td>
-          <td><input type="checkbox" name="obligatoria" id='check_obli' value="{{ pregunta.pk }}" {{pregunta.obligatoria|yesno:'checked, '}}></td>
+          <td><input type="checkbox" name="obligatoria" class='check_obli' value="{{ pregunta.pk }}" {{pregunta.obligatoria|yesno:'checked, '}}></td>
           <td style="text-align: right;">
             <a href="{% url 'modificar_pregunta' pregunta.pk %}"><i class="fa fa-pencil" style="font-size:16px;color:black"></i></a>
             <a href="{% url 'eliminar_pregunta' pregunta.pk %}"><i class="fa fa-trash" style="font-size:16px;color:black"></i></button>
@@ -55,7 +55,7 @@ function getCookie(name) {
 }
 
 $(document).ready(function() {
-  $('#check_obli').on('change', function() {
+  $('.check_obli').on('change', function() {
     $.ajax({
       type: 'POST',
       url: "{% url 'modificar_pregunta_ajax' 0 %}".replace('0', this.value),
