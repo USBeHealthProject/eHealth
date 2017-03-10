@@ -19,11 +19,17 @@
           <th>Pregunta</th>
           <th>Obligatoria</th>
           <th></th>
+          <th style="text-align: right">
+          <a id="add_appointment" href="{% url 'crear_pregunta' especialidad.pk %}">
+            <i class="fa fa-plus-circle" style="font-size:20px;color:white"></i>
+          </a>
+        </th>
         </tr>
         {% for pregunta in preguntas %}
         <tr>
           <td>{{ pregunta.pregunta }}</td>
           <td><input type="checkbox" name="obligatoria" class='check_obli' value="{{ pregunta.pk }}" {{pregunta.obligatoria|yesno:'checked, '}}></td>
+          <td></td>
           <td style="text-align: right;">
             <a href="{% url 'modificar_pregunta' pregunta.pk %}"><i class="fa fa-pencil" style="font-size:16px;color:black"></i></a>
             <a href="{% url 'eliminar_pregunta' pregunta.pk %}"><i class="fa fa-trash" style="font-size:16px;color:black"></i></button>

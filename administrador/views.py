@@ -313,10 +313,40 @@ class VerPreguntas(TemplateView):
         context = super(
             VerPreguntas, self).get_context_data(**kwargs)
         preguntas = Pregunta.objects.filter(especialidad__pk=self.kwargs['pk'])
-
+        especialidad = Especialidad.objects.get(pk=self.kwargs['pk'])
         context['preguntas'] = preguntas
+        context['especialidad'] = especialidad
 
         return context
+
+
+class CrearPregunta(CreateView):
+    template_name = 'administrador/modificar_pregunta.html'
+    form_class = PreguntasForm
+
+    def get_context_data(self, **kwargs):
+        context = super(
+            CrearPregunta, self).get_context_data(**kwargs)
+
+        form = PreguntasForm()
+
+        context['form'] = form
+        context['title'] = 'Crear'
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity.
+        """
+        result = crear_pregunta(request.POST['pregunta'], kwargs['pk'])
+        if result is True:
+            return HttpResponseRedirect(reverse_lazy('ver_preguntas', kwargs={'pk': kwargs['pk']}))
+        else:
+            return render_to_response(
+                'administrador/modificar_pregunta.html',
+                context_instance=RequestContext(request))
 
 
 class ModificarPregunta(UpdateView):
@@ -337,5 +367,6 @@ class ModificarPregunta(UpdateView):
             initial={'pregunta': pregunta.pregunta})
 
         context['form'] = form
+        context['title'] = 'Modificar'
 
         return context

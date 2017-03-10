@@ -121,6 +121,11 @@ urlpatterns = patterns(
         name='ver_preguntas'
     ),
     url(
+        r'^crear-pregunta/(?P<pk>[\w ]+)$',
+        CrearPregunta.as_view(),
+        name='crear_pregunta'
+    ),
+    url(
         r'^eliminar-pregunta/(?P<pk>[\w ]+)$',
         'administrador.controllers.eliminar_pregunta',
         name='eliminar_pregunta'

@@ -109,8 +109,21 @@ def eliminar_pregunta(request, pk):
     return HttpResponseRedirect(reverse_lazy(
         'ver_preguntas', kwargs={'pk': especialidad.pk}))
 
+
 def modificar_pregunta(request, pk):
     pregunta = Pregunta.objects.get(pk=pk)
     pregunta.obligatoria = not pregunta.obligatoria
     pregunta.save()
     return HttpResponse(status=200)
+
+
+def crear_pregunta(pregunta, pk):
+    try:
+        especialidad = Especialidad.objects.get(pk=pk)
+        pregunta = Pregunta(pregunta=pregunta,
+                            especialidad=especialidad)
+        pregunta.save()
+        return True
+    except:
+        return False
+
