@@ -24,6 +24,8 @@
             <i class="fa fa-plus-circle" style="font-size:20px;color:white"></i>
           </a>
         </th>
+        <th></th>
+        <th></th>
         </tr>
         {% for pregunta in preguntas %}
         <tr>
@@ -35,6 +37,8 @@
             <a class="delete" href="{% url 'eliminar_pregunta' pregunta.pk %}"><i class="fa fa-trash" style="font-size:16px;color:black"></i></button>
 
           </td>
+          <td class="move-up"><a><i class="fa fa-sort-up" style="font-size:16px;color:black"></i></a></td>
+          <td class="move-down"><a><i class="fa fa-sort-desc" style="font-size:16px;color:black"></i></a></td>
         </tr>
         {% endfor %}
       </table>
@@ -85,6 +89,17 @@ $(document).ready(function() {
     }
 
 });
+  $('.move-up').click(function() {
+    var row = $(this).closest('tr');
+
+    row.prev().insertAfter(row);
+});
+  $('.move-down').click(function() {
+    var row = $(this).closest('tr');
+
+    row.next().insertBefore(row);
+});
+
 });
 </script>
 {% endblock %}
