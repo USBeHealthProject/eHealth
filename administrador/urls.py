@@ -140,4 +140,9 @@ urlpatterns = patterns(
         'administrador.controllers.modificar_pregunta',
         name='modificar_pregunta_ajax'
     ),
+    url(
+        r'^ordenar-preguntas-ajax/$',
+        'administrador.controllers.ordenar_preguntas',
+        name='ordenar_preguntas_ajax'
+    ),
 )

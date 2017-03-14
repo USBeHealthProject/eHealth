@@ -65,6 +65,7 @@ class Pregunta(models.Model):
                     on_delete=models.CASCADE,
                     null=True)
     obligatoria = models.BooleanField(default=False)
+    posicion = models.CharField(max_length=3, null=True)
 
     def __str__(self):
         return str(self.pregunta)

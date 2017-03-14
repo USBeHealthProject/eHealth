@@ -14,8 +14,11 @@
     <center><h2>Preguntas</h2></center>
     <!-- TABLA DE ESPECIALIDADES-->
     <div id ="show-roles">
+      <form id="form-preguntas" name="form-preguntas" method="POST" action="{% url 'ordenar_preguntas_ajax' %}">
+      {% csrf_token %}
       <table>
         <tr>
+          <th></th>
           <th>Pregunta</th>
           <th>Obligatoria</th>
           <th></th>
@@ -29,12 +32,15 @@
         </tr>
         {% for pregunta in preguntas %}
         <tr>
+          <td></td>
+          <td style="display: none;"><input type="text" name="posicion_{{pregunta.pk}}"></td>
+          <td style="display: none;"><input type="text" name="pk" value={{pregunta.pk}}></td>
           <td>{{ pregunta.pregunta }}</td>
           <td><input type="checkbox" name="obligatoria" class='check_obli' value="{{ pregunta.pk }}" {{pregunta.obligatoria|yesno:'checked, '}}></td>
           <td></td>
           <td style="text-align: right;">
             <a href="{% url 'modificar_pregunta' pregunta.pk %}"><i class="fa fa-pencil" style="font-size:16px;color:black"></i></a>
-            <a class="delete" href="{% url 'eliminar_pregunta' pregunta.pk %}"><i class="fa fa-trash" style="font-size:16px;color:black"></i></button>
+            <a class="delete" href="{% url 'eliminar_pregunta' pregunta.pk %}"><i class="fa fa-trash" style="font-size:16px;color:black"></i></a>
 
           </td>
           <td class="move-up"><a><i class="fa fa-sort-up" style="font-size:16px;color:black"></i></a></td>
@@ -42,6 +48,10 @@
         </tr>
         {% endfor %}
       </table>
+      <br>
+      <br>
+      <button class="btn">Guardar orden</button>
+      </form>
     </div>
   </div>
 
@@ -69,7 +79,6 @@ $(document).ready(function() {
     $.ajax({
       type: 'POST',
       url: "{% url 'modificar_pregunta_ajax' 0 %}".replace('0', this.value),
-      headers: {"X-CSRFToken": getCookie('csrftoken')},
       contentType:'application/json; charset=utf-8',
       success: function(response) {
         console.log(response);
@@ -89,15 +98,52 @@ $(document).ready(function() {
     }
 
 });
+  var table = document.getElementsByTagName('table')[0],
+    rows = table.getElementsByTagName('tr'),
+    text = 'textContent' in document ? 'textContent' : 'innerText';
+
+  for (var i = 1, len = rows.length; i < len; i++){
+      rows[i].children[0][text] = i;
+    }
+    var i = 0;
+    $('tr').each(function() {
+      if (i > 0){
+        var position = $(this).children().first().text();
+        $(this).children().first().next().children().val(position);
+      }
+      i += 1;
+    });
   $('.move-up').click(function() {
     var row = $(this).closest('tr');
 
     row.prev().insertAfter(row);
+    for (var i = 1, len = rows.length; i < len; i++){
+      rows[i].children[0][text] = i;
+    }
+    var i = 0;
+    $('tr').each(function() {
+      if (i > 0){
+        var position = $(this).children().first().text();
+        $(this).children().first().next().children().val(position);
+      }
+      i += 1;
+    });
 });
   $('.move-down').click(function() {
     var row = $(this).closest('tr');
 
     row.next().insertBefore(row);
+    for (var i = 1, len = rows.length; i < len; i++){
+      rows[i].children[0][text] = i;
+    }
+    var i = 0;
+    $('tr').each(function() {
+      if (i > 0){
+        var position = $(this).children().first().text();
+        $(this).children().first().next().children().val(position);
+      }
+      i += 1;
+    });
 });
 
 });

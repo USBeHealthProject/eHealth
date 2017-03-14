@@ -127,3 +127,14 @@ def crear_pregunta(pregunta, pk):
     except:
         return False
 
+
+def ordenar_preguntas(request):
+    pks = request.POST.getlist('pk')
+    for pk in pks:
+        posicion = request.POST['posicion_' + pk]
+        pregunta = Pregunta.objects.get(pk=pk)
+        pregunta.posicion = posicion
+        pregunta.save()
+    especialidad = Especialidad.objects.get(pk=pregunta.especialidad.pk)
+    return HttpResponseRedirect(reverse_lazy(
+        'ver_preguntas', kwargs={'pk': especialidad.pk}))
