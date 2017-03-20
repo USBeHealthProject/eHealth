@@ -40,8 +40,9 @@ INSTALLED_APPS = (
     'bootstrap3',
     'administrador',
     'bootstrap3_datetime',
+    'wkhtmltopdf',
     'medico',
-    'paciente'
+    'paciente',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -115,3 +116,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "eHealth/static"),
 )
+STATIC_ROOT = 'static'
+MEDIA_URL = '/media/'
+MEDICA_ROOT = 'media'
