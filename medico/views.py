@@ -987,15 +987,15 @@ class HistoriasEspecialidadModificar(UpdateView):
                 context_instance=RequestContext(request))
 
 
-class MyPDFView(View):
-    template ='medico/prueba_pdf.html'
-    context = {'title': 'Hello World!'}
-
-    def get(self, request):
-        print "entre"
+class MyPDFViewTriaje(DetailView):
+    template ='medico/historiadetriaje_pdf.html'
+    context = {'title': ''}
+    model = Historiadetriaje
+    def get(self, request, pk):
+        self.context['Historiadetriaje'] = self.get_object()
         response = PDFTemplateResponse(request=request,
                                        template=self.template,
-                                       filename="hello.pdf",
+                                       filename="historiadetriaje.pdf",
                                        context= self.context,
                                        show_content_in_browser=False,
                                        cmd_options={'margin-top': 50,},

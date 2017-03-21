@@ -1,0 +1,39 @@
+	<!DOCTYPE html>
+
+<head>
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+    </br>
+    </br>
+    <h2 style="text-align:center;">Historia de triaje </h2>
+    </br>
+    </br>
+    <i>paciente:                  {{Historiadetriaje.paciente}}</i></br>
+    <i>medico triaje:             {{Historiadetriaje.medico_triaje}}</i></br>
+    </br>
+    </br>
+    <i>antecedentes personales:</i>   <i style="text-align:center;">{{Historiadetriaje.antecedentes_personales}}</i></br>
+    <i>antecedentes familiares:   {{Historiadetriaje.antecedentes_familiares}}</i></br>
+    <i>motivo consulta:  	  {{Historiadetriaje.motivo_consulta}}</i></br>
+    <i>enfermedad actual:  	  {{Historiadetriaje.enfermedad_actual}}</i></br>
+    <i>peso:  			  {{Historiadetriaje.peso}}</i></br>
+    <i>talla:  			  {{Historiadetriaje.talla}}</i></br>
+    <i>signos vitales:  	  {{Historiadetriaje.signos_vitales}}</i></br>
+    <i>piel: 			  {{Historiadetriaje.piel}}</i></br>
+    <i>ojos:  			  {{Historiadetriaje.ojos}}</i></br>
+    <i>fosas nasales:		  {{Historiadetriaje.fosas_nasales}}</i></br>
+    <i>conductos auditivos: 	  {{Historiadetriaje.conductos_auditivos}}</i></br>
+    <i>cavidad oral: 		  {{Historiadetriaje.cavidad_oral}}</i></br>
+    <i>cuello: 			  {{Historiadetriaje.cuello}}</i></br>
+    <i>columna: 		  {{Historiadetriaje.columna}}</i></br>
+    <i>torax: 			  {{Historiadetriaje.torax}}</i></br>
+    <i>abdomen: 		  {{Historiadetriaje.abdomen}}</i></br>
+    <i>extremidades: 		  {{Historiadetriaje.extremidades}}</i></br>
+    <i>genitales: 		  {{Historiadetriaje.genitales}}</i></br>
+
+</body>
+

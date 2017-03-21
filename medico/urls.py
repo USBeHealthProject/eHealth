@@ -199,11 +199,7 @@ urlpatterns = [
         'medico.controllers.obtener_preguntas_especialidad',
         name='obtener_preguntas_especialidad'
     ),
-    url(
-        r'^prueba-pdf$',
-        'medico.views.prueba_pdf',
-        name='prueba_pdf'
-    ),
-    url(r'^pdf/', MyPDFView.as_view(), name='pdf'),
+
+    url(r'^pdf/(?P<pk>\w+)$', MyPDFViewTriaje.as_view(), name='pdf_triaje'),
 
 ]

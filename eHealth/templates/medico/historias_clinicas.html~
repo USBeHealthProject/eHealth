@@ -49,7 +49,7 @@
             		<td>{{historia.paciente.first_name}}</td>
            			<td>{{historia.paciente.last_name}}</td>
             		<td><a href="{% url 'eliminar_historia_clinica' historia.pk %}" style="color: red; font-weight: bolder;">x</a></td>
-			<td><a href="{% url 'pdf_triaje' historia.pk %}" style="color: red; font-weight: bolder;"> pdf</a></td>
+			<td><a href="{% url 'pdf_triaje' historia.pk %}" style="color: red; font-weight: bolder;">  pdf</a></td>
                 </tr>
             {% endfor %}
             </tbody>
