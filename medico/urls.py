@@ -201,5 +201,5 @@ urlpatterns = [
     ),
 
     url(r'^pdf/(?P<pk>\w+)$', MyPDFViewTriaje.as_view(), name='pdf_triaje'),
-
+    url(r'^pdfe/(?P<pk>\w+)$', MyPDFViewEspecialidad.as_view(), name='pdf_especialidad'),
 ]

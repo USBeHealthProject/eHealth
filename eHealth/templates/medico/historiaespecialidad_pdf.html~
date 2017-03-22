@@ -1,0 +1,30 @@
+	<!DOCTYPE html>
+
+<head>
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+    </br>
+    </br>
+    	<h2 style="text-align:center;">Historia de especialidad </h2>
+    </br>
+    </br>
+    
+    </br>
+    </br>
+	{% for x in PreguntaRespuesta|slice:":1" %}
+    		<i>paciente:&nbsp;&nbsp;                          {{x.historia.paciente}}</i></br>
+		<i>medico:&nbsp;&nbsp;                  	  {{x.historia.medico}}</i></br>
+		<i>especialidad:&nbsp;&nbsp;                      {{x.historia.especialidad}}</i></br>
+	{% endfor %}
+	</br>
+    	</br>
+    	{% for x in PreguntaRespuesta %}
+		<i>pregunta:&nbsp;&nbsp;                  {{x.pregunta_historia}}</i></br> 
+    		<i>respuesta:&nbsp;&nbsp;                 {{x.respuesta}}</i></br>
+    	{% endfor %}
+</body>
+

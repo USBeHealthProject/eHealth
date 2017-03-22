@@ -1001,3 +1001,19 @@ class MyPDFViewTriaje(DetailView):
                                        cmd_options={'margin-top': 50,},
                                        )
         return response
+    
+class MyPDFViewEspecialidad(ListView):
+    template ='medico/historiaespecialidad_pdf.html'
+    context = {'title': ''}
+    model = PreguntaRespuesta
+    def get(self, request, pk):
+        self.context['PreguntaRespuesta'] = PreguntaRespuesta.objects.filter(historia__pk=pk)
+        response = PDFTemplateResponse(request=request,
+                                       template=self.template,
+                                       filename="historiaespecialidad.pdf",
+                                       context= self.context,
+                                       show_content_in_browser=False,
+                                       cmd_options={'margin-top': 50,},
+                                       )
+        return response
+
