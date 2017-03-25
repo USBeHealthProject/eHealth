@@ -1,0 +1,4 @@
+{{ object.cedula }}
+{{ object.first_name }}
+{{ object.last_name }}
+{{ object.pregunta.especialidad.nombre_especialidad}}

@@ -1,0 +1,2 @@
+{{ object.pregunta_historia }}
+{{ object.respuesta }}
