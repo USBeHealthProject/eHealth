@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'bootstrap3',
     'administrador',
     'bootstrap3_datetime',
@@ -119,3 +120,10 @@ STATICFILES_DIRS = (
 STATIC_ROOT = 'static'
 MEDIA_URL = '/media/'
 MEDICA_ROOT = 'media'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}

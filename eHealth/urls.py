@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import haystack
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('administrador.urls')),
     url(r'^medico/', include('medico.urls')),
     url(r'^paciente/', include('paciente.urls')),
+    url(r'^search/', include('haystack.urls')),
 ]
