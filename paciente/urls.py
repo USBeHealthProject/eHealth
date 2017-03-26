@@ -20,6 +20,11 @@ from paciente.views import *
 
 urlpatterns = [
     url(
+            r'^perfil/$',
+            Perfil.as_view(),
+            name='perfil'
+        ),
+    url(
         r'^mis-historias/$',
         MisHistorias.as_view(),
         name='mis_historias'

@@ -17,9 +17,12 @@ def register_user(form):
     group = Group.objects.get(name=form.cleaned_data['rol'])
     user.groups.add(group)
     if form.cleaned_data['rol'] == 'paciente':
+        perfil = PerfilPaciente()
+        perfil.save()
         paciente = Paciente(cedula=usuario.ci, usuario=usuario,
                             first_name=user.first_name,
-                            last_name=user.last_name)
+                            last_name=user.last_name,
+                            perfil=perfil)
         paciente.save()
     elif form.cleaned_data['rol'] == 'medico':
         medico = Medico(cedula=usuario.ci, usuario=usuario,

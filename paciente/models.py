@@ -4,6 +4,25 @@ from django.utils import timezone
 from medico.models import *
 
 
+class PerfilPaciente(models.Model):
+    fecha_nacimiento = models.DateField(null=True)
+    estado_civil = models.CharField(max_length=30, blank=True, null=True)
+    numero_telefono = models.CharField(max_length=30, blank=True, null=True)
+    direccion = models.CharField(max_length=30, blank=True, null=True)
+    sexo = models.CharField(max_length=30, blank=True, null=True)
+    altura = models.DecimalField(max_digits=20, decimal_places=2,
+                                   default=0.00, blank=True, null=True)
+    peso = models.DecimalField(max_digits=20, decimal_places=2,
+                                   default=0.00, blank=True, null=True)
+    tipo_sangre = models.CharField(max_length=30, blank=True, null=True)
+    diabetico = models.CharField(max_length=30, blank=True, null=True)
+    alergias = models.CharField(max_length=30, blank=True, null=True)
+    contacto_emergencia = models.CharField(max_length=30, blank=True,
+                                           null=True)
+    telefono_emergencia = models.CharField(max_length=30, blank=True, null=True)
+    comentarios = models.CharField(max_length=999, blank=True, null=True)
+
+
 class Paciente(models.Model):
     ESTADOS_CIVILES = (
         ('Soltero', 'Soltero'),
@@ -15,12 +34,15 @@ class Paciente(models.Model):
     last_name = models.CharField(max_length=30, blank=True, null=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
     lugar_nacimiento = models.CharField(max_length=70, blank=True, null=True)
-    estado_civil = models.CharField(max_length=7, choices=ESTADOS_CIVILES, blank=True, null=True)
+    estado_civil = models.CharField(max_length=7, choices=ESTADOS_CIVILES,
+                                    blank=True, null=True)
     ocupacion = models.CharField(max_length=30, blank=True, null=True)
     direccion = models.CharField(max_length=70, blank=True, null=True)
     telefono = models.IntegerField(blank=True, null=True)
     usuario = models.ForeignKey(Usuario,
                                 on_delete=models.CASCADE)
+    perfil = models.ForeignKey(PerfilPaciente,
+                               on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.cedula) + "  " + self.first_name + " " + self.last_name

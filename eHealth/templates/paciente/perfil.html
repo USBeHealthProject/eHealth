@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery=1%}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+{% load static %}
+{% block content %}
+  <div id="cuerpoHeredado">
+  <center><h1>Mi Perfil</h1></center>
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="text-center">
+          <img src="{% static 'assets/img/avatar.png' %}" class="avatar img-circle img-thumbnail" alt="avatar">
+          <h6>Cambiar foto</h6>
+          <input type="file" class="text-center center-block well well-sm">
+        </div>
+      </div>
+      <!-- edit form column -->
+      <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+        {% if mensaje %}
+        <p class="error"> <i class="fa fa-exclamation-triangle"></i>  <strong>{{ mensaje }}</strong></p>
+        {% endif %}
+          <h4 style="font-weight: bold;">Cédula de identidad: {{usuario.ci}} </h4>
+          <h4 style="font-weight: bold;">Nombre de usuario: {{usuario.user.username}} </h4>
+          <form action="" method=POST>
+          {% csrf_token %}
+          <!--{{ form.password.label }}
+          {{ form.password }}-->
+          <div class="hidden">
+            {% bootstrap_form_errors form %}
+        </div>
+          {{ form }}
+          {% buttons %}
+            <div class="col-xs-12">
+                <br>
+                <button id="id_submit" type="submit" class="btn btn-lg calculate">
+                    Guardar
+                </button>
+                <br>
+                <br>
+            </div>
+            <div class="col-md-3"></div>
+        {% endbuttons %}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="{% static 'plugins/datepicker/locales/bootstrap-datepicker.es.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $( "#id_fecha_nacimiento" ).datepicker({ format: 'yyyy-mm-dd' });
+});
+</script>
+{% endblock %}
