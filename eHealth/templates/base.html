@@ -82,6 +82,7 @@
               {% if user.groups.all.0.name != 'administrador' and user.groups.all.0.name != 'admin' %}
                 {% if user.groups.all.0.name == 'paciente' %}
                 <li><a href=""><i class="fa fa-user"></i>  Ver Perfil</a></li>
+                <li><a href="{% url 'mis_historias' %}"><i class="fa fa-folder-open"></i>  Mis historias</a></li>
                 {% endif %}
                 {% if user.groups.all.0.name == 'medico' %}
                   <li><a href="{% url 'inbox' %}"><i class="fa fa-envelope"></i>  Inbox</a></li>

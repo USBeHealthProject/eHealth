@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<!--
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Search" id="search">
+                    <span class="input-group-addon">
+                        <button type="submit" id="search-button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="row">
+      <div class="col-md-9">
+         <h3>Mis historias</h3>
+      </div>
+</div>
+<br>
+<br>
+{% if user.groups.all.0.name == "paciente" %}
+<h3> Mis historias </h3>
+<div>
+    <table id="search_result" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Especialidad</th>
+                    <th>Ver detalle</th>
+                    <th>Descargar</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for historia in historias %}
+                <tr>
+                    <td></td>
+                    <td>{{historia.especialidad}}</td>
+                    <td><a href="">Ver</a></td>
+                    <td><a href="{% url 'pdf_especialidad' historia.pk %}" style="color: red; font-weight: bolder;"> pdf</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    <br>
+    <br>
+
+
+
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript">
+    $(".eliminar_historia").on('click', function(){
+        if(confirm("¿Está seguro que desea eliminar esta historia?")){
+            var pk = $(this).prev().val();
+            var url = "{% url 'eliminar_historia_especialidad' 0 %}".replace(0,pk);
+            $(location).attr('href', url);
+    }
+    else{
+        return false;
+    }
+    })
+</script>
+{% endblock custom_script %}
