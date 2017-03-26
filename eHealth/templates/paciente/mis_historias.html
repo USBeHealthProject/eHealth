@@ -42,9 +42,9 @@
             <tbody>
             {% for historia in historias %}
                 <tr>
-                    <td>{{historia.fecha}}</td>
+                    <td>{{historia.fecha|date:"d M Y"}}</td>
                     <td>{{historia.especialidad}}</td>
-                    <td><a href="">Ver</a></td>
+                    <td><a href="{% url 'mi_historia' historia.pk %}">Ver</a></td>
                     <td><a href="{% url 'pdf_especialidad' historia.pk %}" style="color: red; font-weight: bolder;"> pdf</a></td>
                 </tr>
             {% endfor %}
