@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.utils import timezone
 from medico.models import *
 
 
@@ -48,6 +49,7 @@ class Historiadetriaje(models.Model):
     abdomen = models.CharField(max_length=200)
     extremidades = models.CharField(max_length=200)
     genitales = models.CharField(max_length=200)
+    fecha = models.DateTimeField(default=timezone.localtime(timezone.now()))
 
 
 class Historia(models.Model):
@@ -57,6 +59,7 @@ class Historia(models.Model):
                                on_delete=models.CASCADE)
     especialidad = models.ForeignKey('medico.Especialidad',
                                      on_delete=models.CASCADE)
+    fecha = models.DateTimeField(default=timezone.localtime(timezone.now()))
 
 
 class Pregunta(models.Model):
