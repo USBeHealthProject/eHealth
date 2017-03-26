@@ -36,6 +36,7 @@
     <table id="search_result" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
+                    <th>Fecha</th>
                     <th>Cédula</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -46,6 +47,7 @@
             <tbody>
             {% for historia in historias %}
                 <tr>
+                    <td>{{historia.fecha|date:"d M Y"}}</td>
                     <td><a href="{% url 'ver_historia_clinica' historia.pk %}">{{historia.paciente.cedula}}</a></td>
             		<td>{{historia.paciente.first_name}}</td>
            			<td>{{historia.paciente.last_name}}</td>
