@@ -115,5 +115,16 @@
           }
       });
 });
+
+$(".eliminar_rol").on('click', function(){
+      if(confirm("¿Está seguro que desea eliminar este rol?")){
+          var pk = $(this).prev().val();
+          var url = "{% url 'eliminar_historia_clinica' 0 %}".replace(0,pk);
+          $(location).attr('href', url);
+  }
+  else{
+      return false;
+  }
+})
 </script>
 {% endblock %}

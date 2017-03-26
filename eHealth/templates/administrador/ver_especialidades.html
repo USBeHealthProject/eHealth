@@ -40,7 +40,8 @@
         <tr>
           <td>{{especialidad.nombre_especialidad}}</td>
           <td style="text-align: right;">
-            <a href="{% url 'eliminar_especialidad' especialidad.pk %}"><i class="fa fa-trash" style="font-size:16px;color:black"></i></a>
+            <input type="text" style="display: none;"" value="{{especialidad.pk}}">
+            <a class="eliminar_historia"><i class="fa fa-trash" style="font-size:16px;color:black"></i></a>
           </td>
         </tr>
       {% endfor%}
@@ -72,4 +73,17 @@
     <!--FIN MODAL-->
 </div>
 {% endblock %}
-
+{% block custom_script %}
+<script type="text/javascript">
+    $(".eliminar_historia").on('click', function(){
+        if(confirm("¿Está seguro que desea eliminar esta especialidad?")){
+            var pk = $(this).prev().val();
+            var url = "{% url 'eliminar_especialidad' 0 %}".replace(0,pk);
+            $(location).attr('href', url);
+    }
+    else{
+        return false;
+    }
+    })
+</script>
+{% endblock custom_script %}

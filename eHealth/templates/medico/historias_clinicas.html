@@ -49,7 +49,7 @@
                     <td><a href="{% url 'ver_historia_clinica' historia.pk %}">{{historia.paciente.cedula}}</a></td>
             		<td>{{historia.paciente.first_name}}</td>
            			<td>{{historia.paciente.last_name}}</td>
-            		<td><a href="{% url 'eliminar_historia_clinica' historia.pk %}" style="color: red; font-weight: bolder;">x</a></td>
+            		<td><input type="text" style="display: none;"" value="{{historia.pk}}"><a class="eliminar_historia" style="color: red; font-weight: bolder;">x</a></td>
 			<td><a href="{% url 'pdf_triaje' historia.pk %}" style="color: red; font-weight: bolder;"> pdf</a></td>
                 </tr>
             {% endfor %}
@@ -63,3 +63,17 @@
 
 
 {% endblock %}
+{% block custom_script %}
+<script type="text/javascript">
+    $(".eliminar_historia").on('click', function(){
+        if(confirm("¿Está seguro que desea eliminar esta historia?")){
+            var pk = $(this).prev().val();
+            var url = "{% url 'eliminar_historia_clinica' 0 %}".replace(0,pk);
+            $(location).attr('href', url);
+    }
+    else{
+        return false;
+    }
+    })
+</script>
+{% endblock custom_script %}

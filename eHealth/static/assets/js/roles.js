@@ -76,6 +76,8 @@ function handleData(response){
 }
 
 function delete_role_ajax(id){
+  if(confirm("¿Está seguro que desea eliminar este rol?")){
+
       $.ajax({
             type: 'GET',
             url: '/eliminar_rol/' + id,
@@ -105,4 +107,8 @@ function delete_role_ajax(id){
               console.log(error);
             }
         });
+  }
+  else{
+      return false;
+  }
 }
