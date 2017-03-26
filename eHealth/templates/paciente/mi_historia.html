@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="cuerpoHeredado">
+    <br>
+    {% for pregunta in preguntas %}
+    <span style="font-size: 24px; font-weight: bold;">{{pregunta.pregunta}}: </span><span style="font-size: 22px;">{{pregunta.respuesta}}</span>
+    <br>
+    <br>
+    {% endfor %}
+    <span style="font-size: 24px; font-weight: bold;">Fecha de la consulta: </span><span style="font-size: 22px;">{{historia.fecha|date:"d M Y"}}</span>
+</div>
+
+{% endblock %}

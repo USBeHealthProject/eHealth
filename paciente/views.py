@@ -24,3 +24,16 @@ class MisHistorias(TemplateView):
         historias = Historia.objects.filter(paciente__pk=paciente.pk)
         context['historias'] = historias
         return context
+
+
+class MiHistoria(TemplateView):
+    template_name = 'paciente/mi_historia.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(
+            MiHistoria, self).get_context_data(**kwargs)
+        preguntas = PreguntaRespuesta.objects.filter(historia__pk=kwargs['pk'])
+        historia = Historia.objects.get(pk=kwargs['pk'])
+        context['preguntas'] = preguntas
+        context['historia'] = historia
+        return context

@@ -24,4 +24,9 @@ urlpatterns = [
         MisHistorias.as_view(),
         name='mis_historias'
     ),
+    url(
+        r'^mi-historia/(?P<pk>\w+)$',
+        MiHistoria.as_view(),
+        name='mi_historia'
+    ),
 ]
