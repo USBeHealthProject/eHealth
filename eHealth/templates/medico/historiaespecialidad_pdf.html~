@@ -11,20 +11,24 @@
     </br>
     	<h2 style="text-align:center;">Historia de especialidad </h2>
     </br>
-    </br>
     
     </br>
-    </br>
 	{% for x in PreguntaRespuesta|slice:":1" %}
-    		<i>paciente:&nbsp;&nbsp;                          {{x.historia.paciente}}</i></br>
-		<i>medico:&nbsp;&nbsp;                  	  {{x.historia.medico}}</i></br>
-		<i>especialidad:&nbsp;&nbsp;                      {{x.historia.especialidad}}</i></br>
+		<h3 style="text-align:right;">Fecha:&nbsp;&nbsp;  {{x.historia.fecha|date:"d M Y"}}</h3></br>
+		<i><b>Paciente:</b>&nbsp;&nbsp;                   {{x.historia.paciente}}</i></br>
+		<i><b>Medico:</b>&nbsp;&nbsp;                  	  {{x.historia.medico}}</i></br>
+		<i><b>Especialidad:</b>&nbsp;&nbsp;               {{x.historia.especialidad}}</i>
 	{% endfor %}
 	</br>
     	</br>
     	{% for x in PreguntaRespuesta %}
-		<i>pregunta:&nbsp;&nbsp;                  {{x.pregunta_historia}}</i></br> 
-    		<i>respuesta:&nbsp;&nbsp;                 {{x.respuesta}}</i></br>
+		<TABLE BORDER=1 WIDTH=1000>
+		<TR><TD>
+		<i><b>pregunta:</b>&nbsp;&nbsp;                  {{x.pregunta_historia}}</i></br> 
+    		<i><b>respuesta:</b>&nbsp;&nbsp;                 {{x.respuesta}}</i>
+		</TD></TR>
+		</TABLE>
+		</br>
     	{% endfor %}
 </body>
 
