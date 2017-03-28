@@ -1,0 +1,3 @@
+{{ object.paciente.first_name }}
+{{ object.paciente.last_name }}
+{{ object.especialidad.nombre_especialidad }}

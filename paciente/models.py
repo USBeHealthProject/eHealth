@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 from medico.models import *
 
 
@@ -47,6 +48,9 @@ class Paciente(models.Model):
     def __str__(self):
         return str(self.cedula) + "  " + self.first_name + " " + self.last_name
 
+    def str_busqueda(self):
+        return 'Paciente: (CI ' + str(self.cedula) + ")  " + self.first_name + " " + self.last_name
+
 
 class Historiadetriaje(models.Model):
     paciente = models.ForeignKey(Paciente,
@@ -83,6 +87,9 @@ class Historia(models.Model):
                                      on_delete=models.CASCADE)
     fecha = models.DateTimeField(default=timezone.localtime(timezone.now()))
 
+    def str_busqueda(self):
+        return 'Historia ' + str(self.especialidad) + ': (' + self.fecha.strftime("%d/%m/%y") + ') ' + str(self.paciente)
+
 
 class Pregunta(models.Model):
     pregunta = models.CharField(max_length=200)
@@ -104,3 +111,9 @@ class PreguntaRespuesta(models.Model):
                                  on_delete=models.CASCADE,
                                  null=True)
     pregunta_historia = models.CharField(max_length=200, null=True)
+
+    def get_absolute_url(self):
+        return reverse('ver_historia_especialidad', args=[self.historia.pk])
+
+    def str_busqueda(self):
+        return self.historia.str_busqueda()

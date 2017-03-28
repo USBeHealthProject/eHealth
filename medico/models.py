@@ -27,6 +27,10 @@ class Medico(models.Model):
     def __str__(self):
         return str(self.cedula) + "  " + self.first_name + " " + self.last_name
 
+    def str_busqueda(self):
+        return 'Medico: (CI ' + str(self.cedula) + ")  " + self.first_name + " " + self.last_name
+
+
 
 class Medico_Especialidad(models.Model):
     especialidad = models.ForeignKey(Especialidad,
