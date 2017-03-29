@@ -90,6 +90,9 @@ class Historia(models.Model):
     def str_busqueda(self):
         return 'Historia ' + str(self.especialidad) + ': (' + self.fecha.strftime("%d/%m/%y") + ') ' + str(self.paciente)
 
+    def get_absolute_url(self):
+        return reverse('pdf_especialidad', args=[self.pk])
+
 
 class Pregunta(models.Model):
     pregunta = models.CharField(max_length=200)
