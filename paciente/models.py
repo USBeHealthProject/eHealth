@@ -116,7 +116,7 @@ class PreguntaRespuesta(models.Model):
     pregunta_historia = models.CharField(max_length=200, null=True)
 
     def get_absolute_url(self):
-        return reverse('ver_historia_especialidad', args=[self.historia.pk])
+        return reverse('pdf_especialidad', args=[self.historia.pk])
 
     def str_busqueda(self):
         return self.historia.str_busqueda()
