@@ -52,7 +52,7 @@
               $.each(response.preguntas, function(k, v) {
                   console.log(this)
                   var pregunta = JSON.stringify(this.pregunta);
-                  $('#preguntas').append('<br><br><br> Pregunta &nbsp;&nbsp;&nbsp;<input type="text" name="pregunta" value=' + pregunta + ' readonly><br><br>Respuesta <input type="text" name="respuesta"'+ (this.obligatoria ? 'required' : '') + '>');
+                  $('#preguntas').append('<br><br><br> Pregunta &nbsp;&nbsp;&nbsp;<input type="text" name="pregunta" value=' + pregunta + ' readonly><br><br>Respuesta <textarea name="respuesta"'+ (this.obligatoria ? 'required' : '') + '></textarea>');
               });
           },
           error: function(error) {
@@ -63,7 +63,7 @@
 
   $('#agregar_pregunta').on('click', function(){
       $(this).parent().append('<br><br><br> Pregunta &nbsp;&nbsp;&nbsp;<input type="text" name="pregunta">\
-                              <br><br>Respuesta <input type="text" name="respuesta">');
+                              <br><br>Respuesta <textarea name="respuesta"></textarea>');
   })
 </script>
 {% endblock %}

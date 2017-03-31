@@ -109,7 +109,7 @@ class Pregunta(models.Model):
 class PreguntaRespuesta(models.Model):
     historia = models.ForeignKey(Historia,
                                  on_delete=models.CASCADE)
-    respuesta = models.CharField(max_length=200)
+    respuesta = models.TextField(max_length=None)
     pregunta = models.ForeignKey(Pregunta,
                                  on_delete=models.CASCADE,
                                  null=True)

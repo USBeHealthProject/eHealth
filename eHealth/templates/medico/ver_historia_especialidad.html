@@ -20,7 +20,7 @@
         <br>
         <input type="hidden" name="preguntas_existentes" value="{{pregunta.pk}}">
         <h4>Pregunta &nbsp;&nbsp;&nbsp;<input type="text" name="pregunta_{{pregunta.pk}}" value="{{pregunta.pregunta_historia}}" readonly></h4>
-        <h4>Respuesta <input type="text" name="respuesta_{{pregunta.pk}}" value="{{pregunta.respuesta}}"></h4>
+        <h4>Respuesta <textarea name="respuesta_{{pregunta.pk}}">{{pregunta.respuesta}}</textarea></h4>
         {% endfor %}
       <h4>Agregar pregunta: &nbsp;&nbsp;<i id="agregar_pregunta" class="fa fa-plus" style="color: green;"></i></h4>
         {% csrf_token %}
@@ -43,7 +43,7 @@
 <script type="text/javascript">
     $('#agregar_pregunta').on('click', function(){
         $(this).parent().append('<br><br><br> Pregunta &nbsp;&nbsp;&nbsp;<input type="text" name="pregunta">\
-                                <br><br>Respuesta <input type="text" name="respuesta">');
+                                <br><br>Respuesta <textarea name="respuesta"></textarea>');
     })
 </script>
 {% endblock %}
